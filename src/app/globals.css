@@ -23,3 +23,8 @@ body {
     text-wrap: balance;
   }
 }
+
+.search-box{
+  background: rgb(255,214,132);
+background: linear-gradient(180deg, rgba(255,214,132,0.7917760854341737) 0%, rgba(241,213,159,0.8421962535014006) 50%, rgba(226,218,202,0.5704875700280112) 100%);
+}

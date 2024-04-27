@@ -9,15 +9,23 @@ export default function Home() {
     new MediaDetailsDto(3,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
     new MediaDetailsDto(4,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
     new MediaDetailsDto(5,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
+    new MediaDetailsDto(6,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
+    new MediaDetailsDto(7,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
+    new MediaDetailsDto(8,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
+    new MediaDetailsDto(9,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
+    new MediaDetailsDto(10,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
+    new MediaDetailsDto(11,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
   ]
   return (
     <div className="flex flex-col items-center w-full">
-      {/* search bar */}
-      <div className="m-3 w-2/5">
-        <input type="search" 
-        className="bg-purple-white w-full shadow rounded border-0 p-3 text-center" 
-        placeholder="Search..."/>
-      </div>
+      {/* search bar */} 
+      <div className="w-full sticky top-0 flex flex-col items-center search-box">
+          <div className="m-3 w-2/5">
+            <input type="search" 
+            className="bg-purple-white w-full shadow rounded border-0 p-3 text-center" 
+            placeholder="Search..."/>
+          </div>
+        </div>
       <div className="w-full p-8">
         <div>
           <div className="text-xl font-medium">Top results for .... </div>
