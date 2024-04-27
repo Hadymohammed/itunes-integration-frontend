@@ -4,11 +4,11 @@ import MediaCard from "@/components/mediaCard.component";
 export default function Home() {
   // const data = MediaDetailsDto; array of media objects
   const data = [
-    new MediaDetailsDto("type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
-    new MediaDetailsDto("type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
-    new MediaDetailsDto("type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
-    new MediaDetailsDto("type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
-    new MediaDetailsDto("type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
+    new MediaDetailsDto(1,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
+    new MediaDetailsDto(2,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
+    new MediaDetailsDto(3,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
+    new MediaDetailsDto(4,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
+    new MediaDetailsDto(5,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
   ]
   return (
     <div className="flex flex-col items-center w-full">
