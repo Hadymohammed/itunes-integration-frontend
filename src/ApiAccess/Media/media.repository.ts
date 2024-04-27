@@ -1,11 +1,14 @@
 import { MediaDetailsDto } from './dtos/mediaDetials.model'
 
+
+// const baseUrl = `${process.env['NEXT_PUBLIC_BACKEND_API']}/media`;
+
 export class MediaRepository {
-    private readonly baseUrl = process.env['NEXT_PUBLIC_BACKEND_API']
+    static readonly baseUrl = `${process.env['NEXT_PUBLIC_BACKEND_API']}/media`;
     constructor(){}
 
-    async searchByTerm(term: string) : Promise<MediaDetailsDto[]> {
-        const response = await fetch(`${this.baseUrl}/media/search?term=${term}`)
+    static async searchByTerm(term: string) : Promise<MediaDetailsDto[]> {
+        const response = await fetch(`${this.baseUrl}?term=${term}`)
         const data = await response.json()
         return data.map((result: any) => new MediaDetailsDto(
             result.id,
