@@ -1,41 +1,82 @@
+"use client";
 import { MediaDetailsDto } from "@/ApiAccess/Media/dtos/mediaDetials.model";
+import { MediaRepository } from "@/ApiAccess/Media/media.repository";
 import MediaCard from "@/components/mediaCard.component";
+import { useEffect, useState } from "react";
+
+//state interface
+interface IPageData {
+  media: MediaDetailsDto[];
+  term: string;
+}
 
 export default function Home() {
-  // const data = MediaDetailsDto; array of media objects
-  const data = [
-    new MediaDetailsDto(1,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
-    new MediaDetailsDto(2,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
-    new MediaDetailsDto(3,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
-    new MediaDetailsDto(4,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
-    new MediaDetailsDto(5,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
-    new MediaDetailsDto(6,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
-    new MediaDetailsDto(7,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
-    new MediaDetailsDto(8,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
-    new MediaDetailsDto(9,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
-    new MediaDetailsDto(10,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
-    new MediaDetailsDto(11,"type", "ثمانية", "viewUrl", "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg", "artist", "artistViewUrl"),
-  ]
+  const [pageData, setPageData] = useState<IPageData>({
+    media: [],
+    term: "",
+  })
+
+  const handleSearch = async (e: any) => {
+    const search = e.target.value;
+    if (search === '') {
+      window.history.pushState({}, '', '/');
+    }else{
+      window.history.pushState({}, '', `?search=${search}`);
+    }
+    // fetch data from the backend
+    const data: MediaDetailsDto[] = await MediaRepository.searchByTerm(search);
+    setPageData({
+      media: data,
+      term: search,
+    });
+  }
+
+  // Function to read query string parameter from URL
+  const getQueryStringParam = (name: string): string | null => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(name);
+  };
+
+  useEffect(() => {
+    // Read the 'search' query parameter from the URL
+    const searchTerm = getQueryStringParam('search') || '';
+
+    const searchInput = document.getElementById('search') as HTMLInputElement;
+    searchInput.value = searchTerm;
+
+    const fetchData = async () => {
+      const data: MediaDetailsDto[] = await MediaRepository.searchByTerm(searchTerm);
+      setPageData({
+        media: data,
+        term: searchTerm,
+      });
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="flex flex-col items-center w-full">
       {/* search bar */} 
       <div className="w-full sticky top-0 flex flex-col items-center search-box">
           <div className="m-3 w-2/5">
             <input type="search" 
+            id="search"
+            onChange={handleSearch}
             className="bg-purple-white w-full shadow rounded border-0 p-3 text-center" 
             placeholder="Search..."/>
           </div>
         </div>
       <div className="w-full p-8">
         <div>
-          <div className="text-xl font-medium">Top results for .... </div>
+          <div className="text-xl font-medium">Top results for {pageData.term?pageData.term:'...'}</div>
         </div>
         <hr className="w-full h-0.5 bg-red-700"/>
       </div>
       {/* media cards */}
-      <div className="mr-10 ml-10 w-full p-8 flex flex-wrap	">
+      <div className="mr-10 ml-10 w-full p-8 flex flex-wrap	justify-around">
         {/* card */}
-        {data.map((media) => (
+        {pageData.media.map((media) => (
           <div className="m-2">
             <MediaCard media={media}/>
           </div>

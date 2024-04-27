@@ -1,12 +1,17 @@
+import { useEffect } from "react";
 import { MediaDetailsDto } from "../ApiAccess/Media/dtos/mediaDetials.model";
 
 export default function MediaCard({ media }: { media: MediaDetailsDto }) {
+  useEffect(() => {
+    console.log(media);
+  }
+  , [media]);
     return (
         <div className=" max-w-52 flex flex-col items-center">
         {/* image */}
         <a href="#">
           <img
-            src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/5e/4f/be/5e4fbe75-14aa-09a7-a260-de5aed951c8d/mza_3967295007949720058.jpg/100x100bb.jpg"
+            src={media.artworkUrl100}
             alt="placeholder"
             className="rounded"
             width={200}
@@ -17,9 +22,9 @@ export default function MediaCard({ media }: { media: MediaDetailsDto }) {
         <div className="flex w-full p-1 justify-between">
           {/* text */}
           <div className="flex flex-col w-4/5">
-            <a href="#" className="font-semibold hover:underline">Media Name</a>
+            <a href={media.viewUrl} className="font-semibold hover:underline line-limit">{media.name}</a>
             <p className="font-medium">
-              <a href="#">Artist</a>
+              <a href={media.artistViewUrl}>{media.artist}</a>
             </p>
           </div>
           {/* menu */}
