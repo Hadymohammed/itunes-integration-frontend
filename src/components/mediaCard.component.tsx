@@ -14,7 +14,7 @@ export default function MediaCard({ media }: { media: MediaDetailsDto }) {
               <img
                 src={media.artworkUrl100}
                 alt="placeholder"
-                className="rounded object-cover w-full"
+                className="rounded object-fit w-full overflow-hidden aspect-square"
               />
             </a>
           </div>
