@@ -3,6 +3,7 @@ import { MediaDetailsDto } from "@/ApiAccess/Media/dtos/mediaDetials.model";
 import { MediaRepository } from "@/ApiAccess/Media/media.repository";
 import SwiperContainer from "@/components/SwiperContainer.component";
 import MediaCard from "@/components/mediaCard.component";
+import Navbar from "@/components/navBar.component";
 import SideMenu from "@/components/sideMenu";
 import { useEffect, useRef, useState } from "react";
 
@@ -19,8 +20,9 @@ export default function Home() {
   })
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [collapsed, setCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const mainSectionStyle = {
-    width: collapsed ? 'calc(100% - 80px)' : 'calc(100% - 250px)', 
+    width: isMobile? '100%' : (collapsed ? 'calc(100% - 80px)' : 'calc(100% - 250px)'), 
     transition: 'width 0.3s ease',
   };
 
@@ -85,18 +87,32 @@ export default function Home() {
         term: searchTerm,
       });
     };
-
     fetchData();
+
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); 
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+
   }, []);
 
   return (
     <div className="flex">
-      <div className="sticky top-0 h-screen">
-        <SideMenu collapsed={collapsed} setCollapsed={setCollapsed}/>
-      </div>
+      {isMobile ==false && (
+        <div className="sticky top-0 h-screen">
+          <SideMenu collapsed={collapsed} setCollapsed={setCollapsed}/>
+        </div>
+      )}
+      {/*  */}
       <main className="flex flex-col items-center" style={mainSectionStyle}>
         {/* search bar */} 
         <div className="z-10 w-full sticky top-0 flex flex-col items-center search-box">
+          {isMobile && (<Navbar />)}
             <div className="m-3 w-2/5">
               <input type="search" 
               id="search"
