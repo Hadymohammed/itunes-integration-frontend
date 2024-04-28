@@ -6,6 +6,7 @@ import { Scrollbar } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/scrollbar';
+import AritstCard from './artistCard.component';
 
 export default function SwiperContainer({media} :{media:MediaDetailsDto[]}){
     return(
@@ -20,7 +21,7 @@ export default function SwiperContainer({media} :{media:MediaDetailsDto[]}){
         {media.map((el,idx)=>(
          <SwiperSlide  key={idx} className='mr-1' style={{width:'120px'}}>
             <div className='mb-4'>
-                <MediaCard media={el}/>
+                <AritstCard media={el}/>
             </div>
           </SwiperSlide>
         ))}
