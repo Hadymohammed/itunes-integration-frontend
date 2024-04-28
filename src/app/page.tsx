@@ -1,6 +1,7 @@
 "use client";
 import { MediaDetailsDto } from "@/ApiAccess/Media/dtos/mediaDetials.model";
 import { MediaRepository } from "@/ApiAccess/Media/media.repository";
+import SwiperContainer from "@/components/SwiperContainer.component";
 import MediaCard from "@/components/mediaCard.component";
 import SideMenu from "@/components/sideMenu";
 import { useEffect, useState } from "react";
@@ -16,6 +17,11 @@ export default function Home() {
     media: [],
     term: "",
   })
+  const [collapsed, setCollapsed] = useState(false);
+  const mainSectionStyle = {
+    width: collapsed ? 'calc(100% - 80px)' : 'calc(100% - 250px)', 
+    transition: 'width 0.3s ease',
+  };
 
   const handleSearch = async (e: any) => {
     const search = e.target.value;
@@ -59,9 +65,9 @@ export default function Home() {
   return (
     <div className="flex">
       <div className="sticky top-0 h-screen">
-        <SideMenu />
+        <SideMenu collapsed={collapsed} setCollapsed={setCollapsed}/>
       </div>
-      <main className="flex flex-col items-center w-full">
+      <main className="flex flex-col items-center" style={mainSectionStyle}>
         {/* search bar */} 
         <div className="z-10 w-full sticky top-0 flex flex-col items-center search-box">
             <div className="m-3 w-2/5">
@@ -78,6 +84,10 @@ export default function Home() {
           </div>
           <hr className="w-full h-0.5 bg-red-700"/>
         </div>
+        {/* swiper */}
+        <SwiperContainer
+          media={pageData.media.slice(1,10)}
+          />
         {/* media cards */}
         <div className="mr-10 ml-10 w-full p-8 flex flex-wrap	justify-around">
           {/* card */}

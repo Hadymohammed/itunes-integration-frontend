@@ -4,8 +4,8 @@ import { FaCog, FaPodcast,FaColumns, FaThList, FaClock, FaStar } from "react-ico
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 
 
-export default function SideMenu (){
-    const [collapsed, setCollapsed] = useState(false);
+export default function SideMenu ({collapsed,setCollapsed}:{collapsed:boolean,setCollapsed:Function}) {
+    // const [collapsed, setCollapsed] = useState(false);
   const styles = {
     sideBarHeight: {
       height: "100vh"
