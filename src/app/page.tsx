@@ -76,9 +76,9 @@ export default function Home() {
       {/* media cards */}
       <div className="mr-10 ml-10 w-full p-8 flex flex-wrap	justify-around">
         {/* card */}
-        {pageData.media.map((media) => (
+        {pageData.media.map((media,index) => (
           <div className="w-32 h-fit lg:w-48 m-5">
-            <MediaCard media={media}/>
+            <MediaCard key={index} media={media}/>
           </div>
         ))}
       </div>
