@@ -58,7 +58,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center w-full">
       {/* search bar */} 
-      <div className="w-full sticky top-0 flex flex-col items-center search-box">
+      <div className="z-10 w-full sticky top-0 flex flex-col items-center search-box">
           <div className="m-3 w-2/5">
             <input type="search" 
             id="search"
