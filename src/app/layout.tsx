@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Ituens Search",
   description: "Search for your favorite media",
 };
-export const thmanyahFont = localFont({
+const thmanyahFont = localFont({
   src: [
     {
       path: "../assets/fonts/IBM-Plex-Sans-Arabic/IBMPlexSansArabic-Thin.otf",
