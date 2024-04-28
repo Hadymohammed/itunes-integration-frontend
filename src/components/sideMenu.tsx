@@ -20,7 +20,7 @@ export default function SideMenu (){
   };
   return (
     <Sidebar style={styles.sideBarHeight} collapsed={collapsed}>
-      <div style={{cursor:"pointer",zIndex:"1",position:"absolute",right:"1", margin:"10px"}}>
+      <div style={{cursor:"pointer",zIndex:"1",position:"absolute",right:"1px", margin:"10px"}}>
         <div onClick={onClickMenuIcon}>
           <AiOutlineMenu />
         </div>
