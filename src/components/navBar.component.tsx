@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { FaCog, FaPodcast, FaColumns, FaThList, FaClock, FaStar } from "react-icons/fa";
 
-export default function Navbar({ collapsed }: { collapsed: boolean }) {
+export default function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
