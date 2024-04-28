@@ -2,6 +2,7 @@
 import { MediaDetailsDto } from "@/ApiAccess/Media/dtos/mediaDetials.model";
 import { MediaRepository } from "@/ApiAccess/Media/media.repository";
 import MediaCard from "@/components/mediaCard.component";
+import SideMenu from "@/components/sideMenu";
 import { useEffect, useState } from "react";
 
 //state interface
@@ -56,32 +57,37 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center w-full">
-      {/* search bar */} 
-      <div className="z-10 w-full sticky top-0 flex flex-col items-center search-box">
-          <div className="m-3 w-2/5">
-            <input type="search" 
-            id="search"
-            onChange={handleSearch}
-            className="bg-purple-white w-full shadow rounded border-0 p-3 text-center" 
-            placeholder="...بحث"/>
-          </div>
-        </div>
-      <div className="w-full p-8">
-        <div>
-          <div className="text-xl font-medium">Top results for {pageData.term?pageData.term:'...'}</div>
-        </div>
-        <hr className="w-full h-0.5 bg-red-700"/>
+    <div className="flex">
+      <div className="sticky top-0 h-screen">
+        <SideMenu />
       </div>
-      {/* media cards */}
-      <div className="mr-10 ml-10 w-full p-8 flex flex-wrap	justify-around">
-        {/* card */}
-        {pageData.media.map((media,index) => (
-          <div  key={index} className="w-32 h-fit lg:w-48 m-5">
-            <MediaCard media={media}/>
+      <main className="flex flex-col items-center w-full">
+        {/* search bar */} 
+        <div className="z-10 w-full sticky top-0 flex flex-col items-center search-box">
+            <div className="m-3 w-2/5">
+              <input type="search" 
+              id="search"
+              onChange={handleSearch}
+              className="bg-purple-white w-full shadow rounded border-0 p-3 text-center" 
+              placeholder="...بحث"/>
+            </div>
           </div>
-        ))}
-      </div>
+        <div className="w-full p-8">
+          <div>
+            <div className="text-xl font-medium">Top results for {pageData.term?pageData.term:'...'}</div>
+          </div>
+          <hr className="w-full h-0.5 bg-red-700"/>
+        </div>
+        {/* media cards */}
+        <div className="mr-10 ml-10 w-full p-8 flex flex-wrap	justify-around">
+          {/* card */}
+          {pageData.media.map((media,index) => (
+            <div  key={index} className="w-32 h-fit lg:w-48 m-5">
+              <MediaCard media={media}/>
+            </div>
+          ))}
+        </div>
+      </main>
     </div>
   );
 }
