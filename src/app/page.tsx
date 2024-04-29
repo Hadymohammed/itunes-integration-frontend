@@ -5,7 +5,7 @@ import SwiperContainer from "@/components/SwiperContainer.component";
 import MediaCard from "@/components/mediaCard.component";
 import Navbar from "@/components/navBar.component";
 import SideMenu from "@/components/sideMenu";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 
 //state interface
 interface IPageData {
@@ -27,6 +27,7 @@ export default function Home() {
   };
 
   const handleSearch = async (e: any) => {
+    console.log("search change : ",e.target.value);
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
@@ -109,6 +110,7 @@ export default function Home() {
         </div>
       )}
       {/*  */}
+      <Suspense fallback={<div>Loading...</div>}>
       <main className="flex flex-col items-center" style={mainSectionStyle}>
         {/* search bar */} 
         <div className="z-10 w-full sticky top-0 flex flex-col items-center search-box">
@@ -124,7 +126,12 @@ export default function Home() {
         {/* header line */}
         <div className="w-full p-8">
           <div>
-            <div className="text-xl font-medium">Top artists for {pageData.term?pageData.term:'...'}</div>
+            <div className="text-xl font-medium">
+              {(pageData?.term && pageData.media.length ==0)  ?
+            <span>No artists found for {pageData.term?pageData.term:'...'}</span> :
+            <span>Top artists for {pageData.term?pageData.term:'...'}</span>
+            }
+            </div>
           </div>
           <hr className="w-full h-0.5 bg-red-700"/>
         </div>
@@ -135,7 +142,12 @@ export default function Home() {
         {/* header line */}
         <div className="w-full p-8">
           <div>
-            <div className="text-xl font-medium">Top results for {pageData.term?pageData.term:'...'}</div>
+            <div className="text-xl font-medium">
+              {(pageData?.term && pageData.media.length ==0)  ?
+              <span>No resualts found for {pageData.term?pageData.term:'...'}</span> :
+              <span>Top resualts for {pageData.term?pageData.term:'...'}</span>
+              }
+              </div>
           </div>
           <hr className="w-full h-0.5 bg-red-700"/>
         </div>
@@ -149,6 +161,7 @@ export default function Home() {
           ))}
         </div>
       </main>
+      </Suspense>
     </div>
   );
 }
