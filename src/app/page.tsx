@@ -22,7 +22,7 @@ export default function Home() {
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const mainSectionStyle = {
-    width: isMobile? '100%' : (collapsed ? 'calc(100% - 80px)' : 'calc(100% - 250px)'), 
+    width: isMobile? '100%' : (collapsed ? 'calc(100% - 80px)' : 'calc(100% - 270px)'), 
     transition: 'width 0.3s ease',
   };
 

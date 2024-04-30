@@ -42,7 +42,7 @@ export default function Navbar() {
       <div style={{ display: "flex", alignItems: "center", position: "relative" }}>
         <div style={styles.menuItem}>Home</div>
         <div style={{ ...styles.menuItem, position: "relative" }} onClick={toggleDropdown}>
-          Your staff
+          My staff
           {showDropdown && (
             <div className="z-50 absolute" style={styles.dropdownMenu}>
               <div className="flex items-center" style={styles.dropdownMenuItem}>
@@ -55,6 +55,11 @@ export default function Navbar() {
           )}
         </div>
         <div style={styles.menuItem}>Settings</div>
+        <div style={styles.menuItem}>Help</div>
+        <div style={styles.menuItem}>Policies</div>
+        <div style={styles.menuItem}>Feedbacks</div>
+
+
       </div>
 
     </div>
