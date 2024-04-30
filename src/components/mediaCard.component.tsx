@@ -70,7 +70,7 @@ export default function MediaCard({ media }: { media: MediaDetailsDto }) {
                       href="#"
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                      action#1
+                      Share
                     </a>
                   </li>
                   <li>
@@ -78,7 +78,7 @@ export default function MediaCard({ media }: { media: MediaDetailsDto }) {
                       href="#"
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                      action#2
+                      Bookmark
                     </a>
                   </li>
                   <li>
@@ -86,7 +86,7 @@ export default function MediaCard({ media }: { media: MediaDetailsDto }) {
                       href="#"
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                      action#3
+                      Download
                     </a>
                   </li>
                 </ul>
