@@ -34,7 +34,7 @@ export default function SideMenu ({collapsed,setCollapsed}:{collapsed:boolean,se
         <MenuItem icon={<FaStar/>} className="mt-3 md-3 font-medium text-lg">Favourites</MenuItem>
         <MenuItem icon={<FaClock/>} className="mt-3 md-3 font-medium text-lg">Recent</MenuItem>
         
-        <hr className="w-11/12 h-0.5 bg-red-700"/>
+        <hr className="w-full h-0.5 bg-red-700"/>
           
         <MenuItem icon={<FaCog />} className="mt-3 md-3 font-medium text-lg">Settings</MenuItem>
         <MenuItem icon={<FaQuestion />} className="mt-3 md-3 font-medium text-lg">Help</MenuItem>
