@@ -41,7 +41,7 @@ export default function SideMenu ({collapsed,setCollapsed}:{collapsed:boolean,se
         <MenuItem icon={<FaBook />} className="mt-3 md-3 font-medium text-lg">Policies</MenuItem>
         <MenuItem icon={<FaComment />} className="mt-3 md-3 font-medium text-lg">Feedbacks</MenuItem>
 
-        <hr className="w-11/12 h-0.5 bg-red-700"/>
+        <hr className="w-full h-0.5 bg-red-700"/>
 
         <a target="_blanck" href="https://play.google.com/store/search?q=%D8%B1%D8%A7%D8%AF%D9%8A%D9%88+%D8%AB%D9%85%D8%A7%D9%86%D9%8A%D8%A9&c=apps&hl=en">
           <MenuItem icon={<FaArrowUpRightFromSquare />} className="mt-3 md-3 font-medium text-lg">Get the Android app</MenuItem>
