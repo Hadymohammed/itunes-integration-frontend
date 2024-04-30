@@ -20,7 +20,7 @@ export default function SideMenu ({collapsed,setCollapsed}:{collapsed:boolean,se
     setCollapsed(!collapsed);
   };
   return (
-    <Sidebar style={styles.sideBarHeight} collapsed={collapsed} width="270px">
+    <Sidebar style={styles.sideBarHeight} collapsed={collapsed} width="270px" className="sideMenu">
       <div className={`flex ${!collapsed? "justify-between items-center" : "justify-center" }  p-2`}>
         {!collapsed? <a target="_blanck" href="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/index.html">
           <img src="/itunesLogo.png" alt="logo" className="w-32 ml-6"/> </a>:null}

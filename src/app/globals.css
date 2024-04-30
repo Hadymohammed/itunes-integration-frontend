@@ -4,7 +4,7 @@
 
 :root {
   --font-color: #1A1B1D;
-  --background:#E2DACA;
+  --background:#f6f4ef;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -25,10 +25,12 @@ body {
 }
 
 .search-box{
-  background: rgb(255,214,132);
-background: linear-gradient(180deg, rgba(255,214,132,0.7917760854341737) 0%, rgba(241,213,159,0.8421962535014006) 50%, rgba(226,218,202,0.5704875700280112) 81%, rgba(226,218,202,0.11390493697478987) 99%);
+  background: rgb(255,231,170);
+background: linear-gradient(180deg, rgba(255,231,170,1) 0%, rgba(251,228,184,0.8337928921568627) 50%, rgba(255,241,209,0.8169861694677871) 81%, rgba(251,245,229,0.6321122198879552) 99%);
 }
-
+.sideMenu{
+  background: #f6f4ef;
+}
 .line-limit {
   display: -webkit-box;
   -webkit-line-clamp: 1;
