@@ -5,7 +5,9 @@ import SwiperContainer from "@/components/SwiperContainer.component";
 import MediaCard from "@/components/mediaCard.component";
 import Navbar from "@/components/navBar.component";
 import SideMenu from "@/components/sideMenu";
-import { Suspense, useEffect, useRef, useState } from "react";
+import React from "react";
+import { useEffect, useRef, useState } from "react";
+import { BarLoader, SyncLoader } from "react-spinners";
 
 //state interface
 interface IPageData {
@@ -21,6 +23,8 @@ export default function Home() {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
   const mainSectionStyle = {
     width: isMobile? '100%' : (collapsed ? 'calc(100% - 80px)' : 'calc(100% - 270px)'), 
     transition: 'width 0.3s ease',
@@ -32,6 +36,7 @@ export default function Home() {
       clearTimeout(timeoutRef.current);
     }
     timeoutRef.current = setTimeout(async () => {   
+      setIsLoading(true);
       const search = e.target.value;
       if (search === '') {
         window.history.pushState({}, '', '/');
@@ -44,6 +49,7 @@ export default function Home() {
         media: data,
         term: search,
       });
+      setIsLoading(false);
     }, 1000) // 1000 milliseconds = 1 second
   }
 
@@ -89,6 +95,7 @@ export default function Home() {
       });
     };
     fetchData();
+    setIsLoading(false);
 
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -109,8 +116,7 @@ export default function Home() {
           <SideMenu collapsed={collapsed} setCollapsed={setCollapsed}/>
         </div>
       )}
-      {/*  */}
-      <Suspense fallback={<div>Loading...</div>}>
+      
       <main className="flex flex-col items-center" style={mainSectionStyle}>
         {/* search bar */} 
         <div className="z-10 w-full sticky top-0 flex flex-col items-center search-box">
@@ -123,45 +129,52 @@ export default function Home() {
               placeholder="...بحث"/>
             </div>
           </div>
-        {/* header line */}
-        <div className="w-full p-8">
-          <div>
-            <div className="text-xl font-medium">
-              {(pageData?.term && pageData.media.length ==0)  ?
-            <span>No artists found for {pageData.term?pageData.term:'...'}</span> :
-            <span>Top artists for {pageData.term?pageData.term:'...'}</span>
-            }
-            </div>
-          </div>
-          <hr className="w-full h-0.5 bg-red-700"/>
-        </div>
-        {/* swiper */}
-        <SwiperContainer
-          media={getUniqueArtists(pageData.media)}
-          />
-        {/* header line */}
-        <div className="w-full p-8">
-          <div>
-            <div className="text-xl font-medium">
-              {(pageData?.term && pageData.media.length ==0)  ?
-              <span>No resualts found for {pageData.term?pageData.term:'...'}</span> :
-              <span>Top resualts for {pageData.term?pageData.term:'...'}</span>
-              }
+          {(isLoading? 
+            (<div className="w-full h-screen flex flex-col justify-center items-center">
+              <SyncLoader color="#ddc596" size={20} />
+            </div>):(
+            <React.Fragment>
+            {/* header line */}
+            <div className="w-full p-8">
+              <div>
+                <div className="text-xl font-medium">
+                  {(pageData?.term && pageData.media.length ==0)  ?
+                <span>No artists found for {pageData.term?pageData.term:'...'}</span> :
+                <span>Top artists for {pageData.term?pageData.term:'...'}</span>
+                }
+                </div>
               </div>
-          </div>
-          <hr className="w-full h-0.5 bg-red-700"/>
-        </div>
-        {/* media cards */}
-        <div className="mr-10 ml-10 w-full p-8 flex flex-wrap	justify-around">
-          {/* card */}
-          {pageData.media.map((media,index) => (
-            <div  key={index} className="w-32 h-fit lg:w-48 m-5">
-              <MediaCard media={media}/>
+              <hr className="w-full h-0.5 bg-red-700"/>
             </div>
+            {/* swiper */}
+            <SwiperContainer
+              media={getUniqueArtists(pageData.media)}
+              />
+            {/* header line */}
+            <div className="w-full p-8">
+              <div>
+                <div className="text-xl font-medium">
+                  {(pageData?.term && pageData.media.length ==0)  ?
+                  <span>No resualts found for {pageData.term?pageData.term:'...'}</span> :
+                  <span>Top resualts for {pageData.term?pageData.term:'...'}</span>
+                  }
+                  </div>
+              </div>
+              <hr className="w-full h-0.5 bg-red-700"/>
+            </div>
+            {/* media cards */}
+            <div className="mr-10 ml-10 w-full p-8 flex flex-wrap	justify-around">
+              {/* card */}
+              {pageData.media.map((media,index) => (
+                <div  key={index} className="w-32 h-fit lg:w-48 m-5">
+                  <MediaCard media={media}/>
+                </div>
+              ))}
+            </div>
+            </React.Fragment>
           ))}
-        </div>
+
       </main>
-      </Suspense>
     </div>
   );
 }
